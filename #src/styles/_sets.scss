@@ -1,0 +1,29 @@
+/* ****************===  Local fonts insertion starting  ===****************** */
+@import "../settings/sets/fonts.scss";
+/* *******************  Local fonts insertion ending  ********************* */
+
+
+/* ========================//========================\\======================= \
+\ =======================//  normalize.css starting  \\====================== */
+@import "../../node_modules/normalize.css/normalize";
+/* =======================\\  normalize.css ending   ||======================= |
+\ ========================\\========================||======================= */
+
+
+// @import "../vendorlib/magnific-popup/magnific-popup";
+
+
+// Дополнительное "обнуление" стилей после нормализации
+/* ********************===  Zeroing styles starting  ===********************* */
+@import "../settings/sets/zeroing.scss";
+/* ***********************  Zeroing styles ending  ************************ */
+
+// Подключение селекторов-помощников. 
+/* ******************===  Selectors-helpers starting  ===******************* */
+@import "../settings/sets/selectors.scss";
+/* *********************  Selectors-helpers ending  ********************** */
+
+
+/* *********************===  Basic sets starting  ===********************** */
+@import "../settings/sets/basic.scss";
+/* ************************  Basic sets ending  ************************* */

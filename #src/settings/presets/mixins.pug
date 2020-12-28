@@ -1,0 +1,8 @@
+//- svg.svgicon-svgname.svgicon-svgname--mod #[+svguse('svgname')]
+mixin svguse(svgname)
+  use(xlink:href="./images/sprites/sprite.svg#" + svgname)
+
+//- picture.classname.classname--mod #[+webp('webpname', 'notwebpname', 'imagename')]
+mixin webp(webpname, notwebpname, imagename)
+  source(srcset="./images/content/webp/" + webpname type="image/webp")
+  img(src="./images/content/other/" + notwebpname alt=imagename)

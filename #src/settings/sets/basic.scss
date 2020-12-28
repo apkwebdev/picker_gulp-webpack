@@ -1,0 +1,22 @@
+// Задание масштаба
+html {
+  line-height: $root-line-height;
+	font-size: $root-font-size-percent;
+	-ms-text-size-adjust: $root-font-size-percent;
+	-moz-text-size-adjust: $root-font-size-percent;
+	-webkit-text-size-adjust: $root-font-size-percent;
+}
+
+// Задаём шрифт и базовый размер текста всего документа
+body {
+  font-family: $font-family; 
+  // font-size: $body-font-size;
+  @include fst-rc(font-size, $body-font-size); // здесь миксин именно fst-rc! 
+  background-color: $body-background-color;
+  color: $body-color;
+}
+
+// === headings ===
+h1, h2, h3, h4, h5, h6 { 
+  font-weight: $font-weight-headings; 
+}

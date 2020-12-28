@@ -1,0 +1,24 @@
+@import "../../styles/_presets.scss";
+
+.main-404 {
+
+  &__title,
+  &__text {
+    text-align: center;
+  }
+  
+  &__title {
+    @include fst(font-size, 27px);
+    font-weight: 700;
+    @include fst(margin-top, 0px);
+    @include fst(margin-bottom, 16px);
+  }
+
+  &__text {
+    @include fst(font-size, 20px);
+  }
+}
+
+/****************************************************************************/
+/***********************===  mediaqueries starting  ===**********************/
+/***********************                               **********************/

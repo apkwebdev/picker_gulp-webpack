@@ -1,0 +1,123 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$pngicon-gears-name: 'pngicon-gears';
+$pngicon-gears-x: 0px;
+$pngicon-gears-y: 0px;
+$pngicon-gears-offset-x: 0px;
+$pngicon-gears-offset-y: 0px;
+$pngicon-gears-width: 76px;
+$pngicon-gears-height: 70px;
+$pngicon-gears-total-width: 187px;
+$pngicon-gears-total-height: 134px;
+$pngicon-gears-image: '../../images/sprites/sprite.png';
+$pngicon-gears: (0px, 0px, 0px, 0px, 76px, 70px, 187px, 134px, '../../images/sprites/sprite.png', 'pngicon-gears', );
+$pngicon-lightbulb-name: 'pngicon-lightbulb';
+$pngicon-lightbulb-x: 141px;
+$pngicon-lightbulb-y: 0px;
+$pngicon-lightbulb-offset-x: -141px;
+$pngicon-lightbulb-offset-y: 0px;
+$pngicon-lightbulb-width: 46px;
+$pngicon-lightbulb-height: 69px;
+$pngicon-lightbulb-total-width: 187px;
+$pngicon-lightbulb-total-height: 134px;
+$pngicon-lightbulb-image: '../../images/sprites/sprite.png';
+$pngicon-lightbulb: (141px, 0px, -141px, 0px, 46px, 69px, 187px, 134px, '../../images/sprites/sprite.png', 'pngicon-lightbulb', );
+$pngicon-rocket-name: 'pngicon-rocket';
+$pngicon-rocket-x: 0px;
+$pngicon-rocket-y: 70px;
+$pngicon-rocket-offset-x: 0px;
+$pngicon-rocket-offset-y: -70px;
+$pngicon-rocket-width: 65px;
+$pngicon-rocket-height: 64px;
+$pngicon-rocket-total-width: 187px;
+$pngicon-rocket-total-height: 134px;
+$pngicon-rocket-image: '../../images/sprites/sprite.png';
+$pngicon-rocket: (0px, 70px, 0px, -70px, 65px, 64px, 187px, 134px, '../../images/sprites/sprite.png', 'pngicon-rocket', );
+$pngicon-wand-name: 'pngicon-wand';
+$pngicon-wand-x: 76px;
+$pngicon-wand-y: 0px;
+$pngicon-wand-offset-x: -76px;
+$pngicon-wand-offset-y: 0px;
+$pngicon-wand-width: 65px;
+$pngicon-wand-height: 65px;
+$pngicon-wand-total-width: 187px;
+$pngicon-wand-total-height: 134px;
+$pngicon-wand-image: '../../images/sprites/sprite.png';
+$pngicon-wand: (76px, 0px, -76px, 0px, 65px, 65px, 187px, 134px, '../../images/sprites/sprite.png', 'pngicon-wand', );
+$spritesheet-width: 187px;
+$spritesheet-height: 134px;
+$spritesheet-image: '../../images/sprites/sprite.png';
+$spritesheet-sprites: ($pngicon-gears, $pngicon-lightbulb, $pngicon-rocket, $pngicon-wand, );
+$spritesheet: (187px, 134px, '../../images/sprites/sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

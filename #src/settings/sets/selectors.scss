@@ -1,0 +1,42 @@
+// === !!! === Зарезервированные селекторы === !!! ===
+// #container-page === id for .page__content.content-page.container-page в шаблоне ./templates/main/main.scss или .page__content.content-page.container-page-404 в шаблоне ./templates/404/404.scss. Необходим для обращения к нему в скрипте для отключения масштабирования размеров (если оно было включено перед этим), когда размер окна браузера сравнялся с размером контейнера .container-page или .container-page-404
+// #zooming === id for Zooming button - Необходим для обращения в скрипте к кнопке масштабирования размеров
+// .zoom-in === class for zooming - Этот класс добавляется всем элементам страницы (body и его детям) при нажатии кнопки #zooming, чтобы сработали стили масштаба размеров. 
+
+// Главный контейнер страницы, его размеры задаются миксином container-page(), сам миксин смотреть в ./settings/presets/flexible-size.scss, переменные смотреть в ./settings/presets/vars.scss
+// При запуске миксина container-page() без параметров мы получим обычный контейнер, т.е. в этом случае мы не будем применять масштабирование размеров и все наши дальнейшие действия не потребуют применения миксинов ./settings/presets/flexible-size.scss. 
+
+@include container-page(true);
+
+// Скрытие элемента 
+// Хорошая статья о 5ти способах 
+// https://webformyself.com/pyat-sposobov-skryt-element-s-pomoshhyu-css/
+.hide-op { opacity: 0; }
+.hide-vh { visibility: hidden; }
+.hide-dn { display: none; }
+
+// anything else selectors
+
+
+
+// === !!! === Подключение webp через background === !!! ===
+// Применяется ./vendor/modernizr.min.js, подключаемый в head 
+// именно он при обнаружении, что браузер не поддерживает webp
+// создаёт класс .no-webp, что позволяет для такого браузера
+// вызвать background с jpeg. https://modernizr.com/download?webp-webpalpha-webplossless_webp_lossless-setclasses&q=webp
+// Пример из https://vk.com/@vk_it-webp :
+// .webp-css-img {
+//   width: 100%;
+//   background: url("../img/pic.webp") no-repeat;
+//   background-size: auto;
+//   background-size: 100% 100%;
+//   padding-top: 55.5%;
+// }
+
+// .no-webp .webp-css-img {
+//   width: 100%;
+//   background: url("../img/pic.jpeg") no-repeat;
+//   background-size: auto;
+//   background-size: 100% 100%;
+//   padding-top: 55.5%;
+// }

@@ -1,0 +1,35 @@
+include ../../settings/presets/vars.pug
+include ../../settings/presets/mixins.pug
+
+block variables
+
+doctype html
+html(lang=lang)
+  head
+    meta(charset="utf-8")
+    include ../#subtemplates/st-if-IE.pug
+    title #{common_title} #{title}
+    include ../#subtemplates/st-meta.pug
+    include ../#subtemplates/st-favicon.pug
+    include ../#subtemplates/st-scripts-modernizr.pug
+    include ../../settings/sets/fonts.pug
+    link(rel="stylesheet" href="./styles/common.min.css")
+    link(rel="stylesheet" href="./styles/templates/" + template + ".min.css")
+    link(rel="stylesheet" href="./styles/pages/" + pagename + ".min.css")
+  body
+    include ../#subtemplates/st-browserupgrade.pug
+    .page
+      .page__header-wrap 
+        include ../../pages/#common-blocks/header/header.pug
+      .page__content.content_page.container-page#container-page
+        .content_page__sidebar-wrap.sidebar-wrap 
+          include ../../pages/#common-blocks/sidebar/sidebar.pug
+        .content_page__main-wrap.main-wrap 
+          block main
+        .content_page__aside-wrap.aside-wrap 
+          include ../../pages/#common-blocks/aside/aside.pug
+      .page__footer-wrap 
+        include ../../pages/#common-blocks/footer/footer.pug
+    
+    block scripts
+    include ../#subtemplates/st-scripts-bundle.pug

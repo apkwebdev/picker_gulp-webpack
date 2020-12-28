@@ -1,0 +1,105 @@
+// === === Переменные для предустановок ./settings/presets/ === ===
+// === flex-grid variables for ./settings/presets/flex-grid.scss ===
+// === true breakpoints =
+$tbp0: 243px;
+$tbp1: 324px;
+$tbp2: 432px;
+$tbp3: 576px;
+$tbp4: 768px;
+$tbp5: 1024px;
+$tbp6: 1365px;
+$tbp7: 1820px;
+// === breakpoints delta =
+$dbp: 32px;
+// === breakpoints with delta =
+$bp0: $dbp + $tbp0; // for $dbp = 32: 275
+$bp1: $dbp + $tbp1; // for $dbp = 32: 358
+$bp2: $dbp + $tbp2; // for $dbp = 32: 464
+$bp3: $dbp + $tbp3; // for $dbp = 32: 608
+$bp4: $dbp + $tbp4; // for $dbp = 32: 800
+$bp5: $dbp + $tbp5; // for $dbp = 32: 1056
+$bp6: $dbp + $tbp6; // for $dbp = 32: 1397
+$bp7: $dbp + $tbp7; // for $dbp = 32: 1852
+// === default $bp =
+$bp: $bp5;
+// === offsets =
+$hos1: 16px;
+$vos1: 16px;
+$hos2: 8px;
+$vos2: 8px;
+// === number of columns =
+$columns12: 12;
+$columns24: 24;
+
+// === containers and wrappers ===
+// Для основного шаблона, например, ./templates/col3/col3.scss
+$container-page: 1280px !global; 
+$container-page-padding: 0px !global;
+// Для дополнительного шаблона, например, ./templates/col1/col1.scss
+$container-page-aux: 768px !global;
+$container-page-aux-padding: 0px !global;
+
+// === блоки шаблонов ===
+$sidebar-width: 240px;
+$sidebar-padding: 16px;
+$aside-width: 320px;
+$aside-padding: 16px;
+
+$main-width: main-width(100%);
+//В случае иного шаблона где потребуется явная задача ширины можно воспользоваться другими возможными значениями функции расчёта размера main-width: sma(по умолчанию), sm, ma, m, другие символы вернут значение ширины равное 100%
+$main-padding: 16px;
+
+
+// === === Переменные для установок ./settings/sets/ === ===
+// === ./settings/sets/basic.scss ===
+
+// ===  html =
+$root-line-height: 1; 
+// Корневой размер шрифта всего html-документа, задаётся в процентах.
+$root-font-size-percent: 100%;
+
+// ===  body =
+$font-family: 'Exo 2', 'Arial', sans-serif;
+//$font-family: 'Open Sans', 'Arial', sans-serif;
+
+// Размер экрана $screen-size, на котором нам нужен определённый размер шрифта $body-font-size. Глобальные переменные масштабируемых размеров.
+$screen-size: 1024px !global;
+$body-font-size: 18px !global; 
+$body-font-size-lower: 16px !global;
+// коэффициент соотношения размеров контейнера к размеру экрана, при котором нам необходим шрифт определённого размера
+$screen-ratio: $container-page / $screen-size !global;
+// ===  speed of text resizing  === 
+$str: $body-font-size-lower / $body-font-size !global; 
+// ===  speed of containers resizing  ===
+$scr: .75 !global;
+
+// ===  Стили заголовков  ===
+$font-weight-headings: 400;
+
+// Толщины шрифта, b - bold, sb - semibold, n - normal, l - light 
+$fwb : 700;
+$fwsb : 600;
+$fwn : 400;
+$fwl : 300;
+
+// Стили шрифта 
+$fsn : normal;
+$fsi : italic;
+
+// Базовые цвета страницы, очень нужны прежде всего для firefox
+$body-background-color: #ccc;
+$body-color: #333;
+
+// Цвета текста
+$tc1 : #000;
+$tc2 : #111;
+$tc3 : #333;
+$tc4 : #444;
+$tc5 : #555;  //$color6 : rgba($color: rgb(52, 173, 82), $alpha: 1);
+
+// Цвета фона
+$bgc1 : #fff;
+$bgc2 : #eee;
+$bgc3 : #ddd;
+$bgc4 : #ccc;
+$bgc5 : #bbb;  //$bgc6 : rgba($color: rgb(52, 173, 82), $alpha: 1);

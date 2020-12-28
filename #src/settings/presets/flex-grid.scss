@@ -1,0 +1,99 @@
+// ===  mixins list: 
+// row, col, size, sizebp, bp, padding, margin
+
+@mixin row($hos: $hos1, $vos: $vos1) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$hos / 2;
+  margin-right: -$hos / 2;
+  padding-top: 2 * $vos;
+  margin-bottom: -$vos; 
+}
+
+@mixin col($hos: $hos1, $vos: $vos1) {
+  margin-left: $hos / 2;
+  margin-right: $hos / 2;
+  margin-top: -$vos;
+  margin-bottom: 2 * $vos;
+}
+
+@mixin size($n, $hos: $hos1, $columns: $columns12) {
+  $val: 100% / $columns * $n;
+  width: calc(#{$val} - #{$hos});
+}
+
+@mixin sizebp($bp, $n, $hos: $hos1, $columns: $columns12) {
+  $val: 100% / $columns * $n;
+  @media screen and (max-width: $bp) {
+    width: calc(#{$val} - #{$hos});
+  }
+}
+
+@mixin bp($bp: $bp5) {
+  @media screen and (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin padding($hos: $hos1) {
+  padding-left: $hos;
+  padding-right: $hos;
+}
+
+@mixin margin($hos: $hos1) {
+  margin-left: $hos;
+  margin-right: $hos;
+}
+
+// Сетка с резиновыми размерами офсетов (маржинов) пока что в архиве, т.к. ie11 не понимает вложенных calc() и firefox тупит на подсчётах!
+
+// @mixin rowf($hos: $hos, $vos: $vos, $k: $str) {
+//   display: flex;
+//   flex-wrap: wrap;
+//   @include fst(margin-left, -$hos / 2, $k);
+//   @include fst(margin-right, -$hos / 2, $k);
+//   @include fst(padding-top, 2 * $vos, $k);
+//   @include fst(margin-bottom, -$vos, $k);
+// }
+
+// @mixin colf($hos: $hos, $vos: $vos, $k: $str) {
+//   @include fst(margin-left, $hos / 2, $k);
+//   @include fst(margin-right, $hos / 2, $k);
+//   @include fst(margin-top, -$vos, $k);
+//   @include fst(margin-bottom, 2 * $vos, $k);
+// }
+
+// @function fsb-x($bpl, $bpu, $fsl, $fsu, $columns, $n) { 
+//   $colwidth: 100% / $columns * $n;
+//   @return calc(#{$colwidth} - #{$fsl} + #{($fsu - $fsl) / 1px} * (100vw - #{$bpl}) / #{($bpu - $bpl) / 1px});
+// }
+
+// @mixin sizef($n, $hos: $hos, $columns: $columns, $k: $str) {
+//   $fsu: $hos;
+//   $fsl: $fsu * $k;
+//   $bpu: $container-page;
+//   $bpl: $bpu * $scr;
+//   $colwidth: 100% / $columns * $n;
+//   $res: fsb-x($bpl, $bpu, $fsl, $fsu, $columns, $n);
+
+//   width: calc(#{$colwidth} - #{$hos});
+//   .zoom-in & {
+//     width: $res;
+//   }
+//   @media screen and (max-width: $bpu) {
+//     width: $res; 
+//   }
+// }
+
+// @mixin sizef-bp($bp, $n, $hos: $hos, $columns: $columns, $k: $str) {
+//   $fsu: $hos;
+//   $fsl: $fsu * $k;
+//   $bpu: $container-page;
+//   $bpl: $bpu * $scr;
+  
+//   $val: 100% / $columns * $n;
+
+//   @media screen and (max-width: $bp) {
+//     width: calc(#{$val} - #{fsb($bpl, $bpu, $fsl, $fsu)}); 
+//   }
+// }

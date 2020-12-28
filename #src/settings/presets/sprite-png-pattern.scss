@@ -1,0 +1,13 @@
+// Паттерн для реализации масштабируемой картинки из sprite-png.scss
+// Вместо n подставляем название файла png из спрайта
+
+// .pngicon-n {
+//   background-image: url(../../images/sprites/sprite.png);
+//   @include fst(background-position-x, $pngicon-n-x);
+//   @include fst(background-position-y, $pngicon-n-y);
+//   @include fst(background-position-x, $pngicon-n-offset-x);
+//   @include fst(background-position-y, $pngicon-n-offset-y);
+//   @include fst(width,                 $pngicon-n-width);
+//   @include fst(height,                $pngicon-n-height);
+//   @include fst(background-size,       $pngicon-n-total-width);
+// }

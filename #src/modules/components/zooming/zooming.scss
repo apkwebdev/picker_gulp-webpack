@@ -1,0 +1,19 @@
+#zooming {
+  font-weight: 700;
+  @include fst(width, 88px);
+  @include fst(height, 44px);
+  border-radius: 50%;
+  @include fst(margin-left, 16px);
+  @include fst(margin-right, 16px);
+  background-color: rgb(112, 196, 28);
+  // position: absolute;
+  // top: 50%; 
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+}
+
+// bp отключения кноки задаётся в соответствующем шаблоне! например, 
+// в col1.scss 
+//   @include bp($container-page-aux) { #zooming { display: none; } }
+// в col3.scss 
+//   @include bp($container-page) { #zooming { display: none; } }

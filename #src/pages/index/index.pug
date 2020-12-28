@@ -1,0 +1,22 @@
+extends ../../templates/col2/col2.pug
+block variables
+  - const title = ""
+  - const template = "col2"
+  - const pagename = "index"
+
+block main
+  main.main-index
+    h1.main-index__title Page Index
+    h3.main-index__subtitle Пример использования png спрайта и его масштабирования
+    .main-index__pngicon-wrap.pngicon-wrap
+      .pngicon.pngicon-gears
+      .pngicon.pngicon-lightbulb
+      .pngicon.pngicon-rocket
+    h3.main-index__subtitle Пример использования svg спрайта и его масштабирования
+    .main-index__svgicon-wrap.svgicon-wrap
+      svg.svgicon.svgicon-tools #[+svguse('tools')]
+      svg.svgicon.svgicon-spinner #[+svguse('spinner')]
+      svg.svgicon.svgicon-wrench #[+svguse('wrench')]
+
+block scripts
+  //- script(src=vendorjs)

@@ -1,0 +1,108 @@
+// === Главный контейнер страницы, переменные смотреть в ./settings/presets/vars.scss
+
+// Миксин задаёт стили для главного контейнера страницы. Главная особенность в том, что можно задать стили для последующего масштабирования страницы. По умолчанию стили обычные, без будущей возможности масштабирования. Чтобы получились стили размеров, которые можно будет масштабировать кнопкой #zooming, достаточно в скобочках при его инклюде указать любой символ. Мисксин создаст 2 контейнера для двух шаблонов с разными размерами контейнеров страницы. Первый будет называться .container-page, второй container-page-aux. Миксин легко расширить на большее количество шаблонов. При этом нужно будет в ./settings/presets/vars.scss создать для него 2 переменные по такому же принципу как и для уже сделанных контейнеров. 
+@mixin container-page($flexible: false) {
+  // Переменные смотреть в .vars.scss
+  @if $flexible == false {
+    .container-page { 
+      width: 100%;
+      max-width: $container-page; 
+      padding-left: $container-page-padding;
+      padding-right: $container-page-padding;
+      // !!! === >>> Центрирование > .page {align-items: center;}
+    }
+    .container-page-aux { 
+      width: 100%;
+      max-width: $container-page-aux; 
+      padding-left: $container-page-aux-padding;
+      padding-right: $container-page-aux-padding;
+      // !!! === >>> Центрирование > .page {align-items: center;}
+    }
+  } 
+  @else if $flexible != false {
+    .container-page { 
+      width: 100%;
+      max-width: $container-page; 
+      @include fst(padding-left, $container-page-padding);
+      @include fst(padding-right, $container-page-padding);
+      // !!! === >>> Центрирование > .page {align-items: center;}
+      
+      .zoom-in & { // Этот модуль нужен для резиновых размеров
+        min-width: 100%;
+      }
+    }
+    .container-page-aux { 
+      width: 100%;
+      max-width: $container-page-aux; 
+      @include fst(padding-left, $container-page-aux-padding);
+      @include fst(padding-right, $container-page-aux-padding);
+      // !!! === >>> Центрирование > .page {align-items: center;}
+      
+      .zoom-in & { // Этот модуль нужен для резиновых размеров
+        min-width: 100%;
+      }
+    }
+  }
+}
+
+// === Миксин fst() (flexible_size) на базе функции fsb (функцию смотреть в ./settings/presets/functions.scss) ===
+// Чтобы понять как работает миксин fst() нужно понять, что делает функция fsb ./settings/presets/functions.scss, и в частности её модификация функция fst! Об этом лучше почитать в файле функций. 
+@mixin fst($prop, $size: $body-font-size, $k: $str) {
+  $fsu: $size * $screen-ratio * $str;
+  $fsl: $fsu * $k;
+  $bpu: $container-page;
+  $bpl: $bpu * $scr;
+  
+  #{$prop}: $fsu;
+  .zoom-in & {
+    #{$prop}: fsb($bpl, $bpu, $fsl, $fsu);
+  }
+  @media screen and (max-width: $container-page) {
+    #{$prop}: fsb($bpl, $bpu, $fsl, $fsu); 
+  }
+}
+// Данный миксин создаёт стили для размера элемента или шрифта на 3 случая. Для этого ему требуются переменные: $screen-size, $body-font-size, $body-font-size-lower, $container-page, производные от них $screen-ratio, $str, $scr. Все они глобальные и описаны в ./settings/presets/vars.scss. 
+// 1.Когда окно браузера больше контейнера .container-page, но при этом кнопка #zooming НЕ была нажата, т.е. масштабирование не включено. 
+// 2.Когда окно браузера больше контейнера .container-page, но при этом кнопка #zooming была нажата, т.е. размер зависим от размера окна браузера и соответственно этот размер увеличится. 
+// 3.Когда размер окна браузера меньше контейнера .container-page все размеры пропущенные через миксин будут уменьшаться во всё той же пропорции. 
+
+// Таким образом имеем правила для трёх ситуаций для одного свойства для одного элемента путём короткой записи @include fst(property, value). Третье значение - это возможность побыстрому изменить $str для конкретного случая.
+
+// Следующий миксин отличается от предыдущего только тем, что класс .zoom-in добавится после класса элемента, в котором мы его применяем (replace classes). Такой порядок необходим, например, для задания размера шрифта в body. Именно в этом случае размер шрифта будет наследоваться детьми body!
+@mixin fst-rc($prop, $size: $body-font-size, $k: $str) {
+  $fsu: $size * $screen-ratio * $str;
+  $fsl: $fsu * $k;
+  $bpu: $container-page;
+  $bpl: $bpu * $scr;
+  
+  #{$prop}: $fsu;
+  .zoom-in {
+    #{$prop}: fsb($bpl, $bpu, $fsl, $fsu);
+  }
+  @media screen and (max-width: $container-page) {
+    #{$prop}: fsb($bpl, $bpu, $fsl, $fsu); 
+  }
+}
+
+
+// archive
+
+// @mixin fs($prop, $fsu, $fsl: $fsu * .75) {
+//   #{$prop}: $fsu * 1px;
+//   .zoom-in & {
+//     #{$prop}: fs($container-page, $fsu, $fsl);
+//   }
+//   @media screen and (max-width: $container-page) {
+//     #{$prop}: fs($container-page, $fsu, $fsl); 
+//   }
+// }
+
+// @mixin fs-body($prop, $fsu, $fsl: $fsu * .75) {
+//   #{$prop}: $fsu * 1px;
+//   .zoom-in {
+//     #{$prop}: fs($container-page, $fsu, $fsl);
+//   }
+//   @media screen and (max-width: $container-page) {
+//     #{$prop}: fs($container-page, $fsu, $fsl); 
+//   }
+// }

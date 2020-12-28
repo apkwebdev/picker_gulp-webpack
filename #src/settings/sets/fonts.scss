@@ -1,0 +1,28 @@
+// ВНИМАНИЕ! Подключение удалённых шрифтов с google fonts через @import при компиляции даёт ошибку, поэтому удалённое подключение надо делать через link в head шаблона страницы. Для этого есть файл ./settings/sets/fonts.pug, он инклюдится в каждый шаблон. В случае применения локального подключения при помощи стилей здесь, там, в шаблонах, например, ./templates/main/main.scss и ./templates/404/404.scss, комментируем строчку include ../../settings/sets/fonts.pug
+
+// Подключение шрифтов, статьи
+// https://htmlacademy.ru/blog/boost/frontend/fonts-loading
+// https://webformyself.com/css-font-display-budushhee-rendera-shriftov-v-vebe/
+
+// конвертеры шрифтов
+// https://anyconv.com/ru/konverter-shriftov/
+
+
+
+// === === !!!  Подключение локальных шрифтов  !!! === ===
+// Сначала сами шрифты размещаем в ./fonts/
+// Теперь подключаем при помощи миксина font-face, его код смотреть в ./settings/presets/mixins.scss
+
+// В сборке в директории ./fonts/ есть шрифты Open Sans. Для их подключения достаточно раскомментировать код ниже.
+
+// @include font-face('Open Sans', '../fonts/opensans/opensans/opensans', 400, 'normal');
+// @include font-face('Open Sans', '../fonts/opensans/opensanslight/opensanslight', 300, 'normal');
+// @include font-face('Open Sans', '../fonts/opensans/opensanssemibold/opensanssemibold', 600, 'normal');
+
+// @include font-face('Open Sans', '../fonts/opensans/opensansitalic/opensansitalic', 400, 'italic');
+// @include font-face('Open Sans', '../fonts/opensans/opensanslightitalic/opensanslightitalic', 300, 'italic');
+// @include font-face('Open Sans', '../fonts/opensans/opensanssemibolditalic/opensanssemibolditalic', 600, 'italic');
+
+
+// ************** !!! Дальнейшие действия !!!  *************** \\
+// После подключения локальных шрифтов здесь или удалённых в ./settings/sets/fonts.pug заходим в ./settings/presets/vars.scss и задаём значение переменной $font-family!!!

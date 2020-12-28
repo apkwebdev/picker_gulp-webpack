@@ -1,0 +1,16 @@
+.header { 
+  width: 100%;
+  @include fst(height, 64px);
+  @include fst(padding-left, 16px);
+  @include fst(padding-right, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__link {
+    @include fst(margin-left, 16px);
+    @include fst(margin-right, 16px);
+  }
+}
+
+@import "../../../modules/components/zooming/zooming.scss";

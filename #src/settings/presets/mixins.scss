@@ -1,0 +1,97 @@
+// === mixins list:
+// font-face, box, svgbox, ie, flexc, bg-cover
+
+
+// === Подключение локальных шрифтов ===
+@mixin font-face($fname, $fpath, $fweight: normal, $fstyle: normal) {
+  @font-face {
+    font-family: quote($fname);
+    src: local($fname),
+      url(#{$fpath}.woff2) format("woff2"),
+      url(#{$fpath}.woff) format("woff"),
+      url(#{$fpath}.ttf) format("ttf");
+    font-weight: $fweight;
+    font-style: $fstyle;
+    font-display: swap;
+  }
+}
+// Статья о вариативных шрифтах (на будущее)
+// https://web.dev/variable-fonts/
+
+// === box ===
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+// === svgbox ===
+// .svgicon-svgname {
+//   @include svgbox(1, 1, 16px);
+//   fill: red;
+//   display: inline-block;
+// }
+@mixin svgbox($bw: 1, $bh: 1, $height: $body-font-size) {
+  width: $bw / $bh * $height;
+  height: $height;
+}
+// === svgbox-fst ===
+// .svgicon-svgname {
+//   @include svgbox-fst(1, 1, 16px);
+//   fill: red;
+//   display: inline-block;
+// }
+@mixin svgbox-fst($bw: 1, $bh: 1, $height: $body-font-size) {
+  @include fst(width, $bw / $bh * $height);
+  @include fst(height, $height);
+  width: $bw / $bh * $height;
+  height: $height;
+}
+
+// === Стили только для IE10 и IE11 ===
+// @include ie {
+//   .classname { 
+//     transform: translate(-50%, -50%); // центрует флексы правильно
+//     height: 64px; // min-height ie не понимает!
+//     min-height: 1vh ; // здесь важно значение именно в vh и большее нуля, тогда будет работать растягивание элемента ребёнка по высоте до прибитого футера его родителем даже когда контента в дите мало
+//   }
+// }
+@mixin ie {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content; 
+  }
+}
+
+// === центрирование флексами ===
+// @include centerflex;
+@mixin flexс {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin bg-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// archive
+
+// $units: 1px !default;
+// @mixin screen($res-first, $res-last: $res-first) {
+//   @if $res-first == $res-last {
+//     @media screen and (max-width: if(unitless($res-first), ($res-first - 1) *$units, $res-first)) {
+//       @content;
+//     }
+//   }
+//   @else if $res-first < $res-last {
+//     @media screen and (min-width: if(unitless($res-first), $res-first*$units, $res-first)) and (max-width: if(unitless($res-last), $res-last*$units, $res-last)) {
+//       @content;
+//     }
+//   }
+// }
+
+// @mixin min-screen($res) {
+//   @media screen and (min-width: if(unitless($res), $res*$units, $res)) {
+//     @content;
+//   }
+// }

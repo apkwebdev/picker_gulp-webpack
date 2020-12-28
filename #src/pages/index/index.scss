@@ -1,0 +1,85 @@
+@import "../../styles/_presets.scss";
+
+.main-index {
+  
+  &__title {
+    @include fst(font-size, 27px);
+    line-height: 1.5;
+    font-weight: 700;
+    text-align: center;
+    @include fst(margin-bottom, 24px);
+  }
+  &__subtitle {
+    @include fst(font-size, 24px);
+    line-height: 1.35;
+    font-weight: 600;
+    text-align: center;
+    @include fst(margin-bottom, 20px);
+  }
+}
+
+.pngicon-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @include fst(margin-bottom, 20px);
+}
+
+.pngicon,
+.svgicon { @include fst(margin-right, 16px); }
+
+.pngicon-gears {
+  background-image: url(../../images/sprites/sprite.png);
+  @include fst(background-position-x, $pngicon-gears-x);
+  @include fst(background-position-y, $pngicon-gears-y);
+  @include fst(background-position-x, $pngicon-gears-offset-x);
+  @include fst(background-position-y, $pngicon-gears-offset-y);
+  @include fst(width,                 $pngicon-gears-width);
+  @include fst(height,                $pngicon-gears-height);
+  @include fst(background-size,       $pngicon-gears-total-width);
+}
+
+.pngicon-lightbulb {
+  background-image: url(../../images/sprites/sprite.png);
+  @include fst(background-position-x, $pngicon-lightbulb-x);
+  @include fst(background-position-y, $pngicon-lightbulb-y);
+  @include fst(background-position-x, $pngicon-lightbulb-offset-x);
+  @include fst(background-position-y, $pngicon-lightbulb-offset-y);
+  @include fst(width,                 $pngicon-lightbulb-width);
+  @include fst(height,                $pngicon-lightbulb-height);
+  @include fst(background-size,       $pngicon-lightbulb-total-width);
+}
+
+.pngicon-rocket {
+  background-image: url(../../images/sprites/sprite.png);
+  @include fst(background-position-x, $pngicon-rocket-x);
+  @include fst(background-position-y, $pngicon-rocket-y);
+  @include fst(background-position-x, $pngicon-rocket-offset-x);
+  @include fst(background-position-y, $pngicon-rocket-offset-y);
+  @include fst(width,                 $pngicon-rocket-width);
+  @include fst(height,                $pngicon-rocket-height);
+  @include fst(background-size,       $pngicon-rocket-total-width);
+}
+
+.svgicon-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.svgicon {
+  @include svgbox-fst(512, 512, 64px);
+  fill: red;
+}
+
+.svgicon-tools,
+.svgicon-wrench { fill: #333; }
+
+.svgicon-spinner { 
+  animation: spinner-rotate .75s linear 0s infinite normal; 
+}
+  
+@keyframes spinner-rotate { 100% { transform: rotate(360deg); } }
+
+/****************************************************************************/
+/***********************===  mediaqueries starting  ===**********************/
+/***********************                               **********************/

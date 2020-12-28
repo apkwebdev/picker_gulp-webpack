@@ -1,0 +1,1 @@
+This directory for interchange with a library of modules and content outside the project directory
